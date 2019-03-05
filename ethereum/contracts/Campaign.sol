@@ -13,7 +13,7 @@ contract Campaign {
     }
 
     // Call whenever someone wants to send money to contract
-    // Mark as `payable` any time money is sent
+    // Must label as `payable` any time money is sent
     function contribute() public payable {
 
         // Access the global variable `msg` to verify value in wei
