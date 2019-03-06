@@ -9,6 +9,7 @@ contract Campaign {
         bool complete;
     }
 
+    Request[] public requests;  // requests array holds elements of type Request
     address public manager;  // Define the manager
     uint public minimumContribution;
     address[] public approvers;
