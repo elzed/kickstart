@@ -1,6 +1,14 @@
 pragma solidity ^0.4.17;
 
 contract Campaign {
+    struct Request {
+        // Define types and fields for our struct
+        string description;
+        uint value;
+        address recipient;
+        bool complete;
+    }
+
     address public manager;  // Define the manager
     uint public minimumContribution;
     address[] public approvers;
