@@ -14,6 +14,14 @@ contract Campaign {
     uint public minimumContribution;
     address[] public approvers;
 
+    // Add `modifier restricted` to any given function to access its behavior
+    modifier restricted() {
+        require(msg.sender == manager);
+        // The function body is inserted where the special symbol `_;`
+        // in the definition of a modifier appears
+        _;
+    }
+
     // Define the constructor function
     // Function sets the owner and the minimumContribution
     function Campaign(uint minimum) public {
@@ -31,4 +39,6 @@ contract Campaign {
         approvers.push(msg.sender);
 
     }
+
+    // TODO: Add a createRequest() function
 }
