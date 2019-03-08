@@ -44,7 +44,7 @@ contract Campaign {
         public restricted {
             // Assign instance of Request struct with its fields in braces
             // to variable `newRequest` of type Request
-            Request newRequest = Request({
+            Request memory newRequest = Request({
                 description: description,
                 value: value,
                 recipient: recipient,
