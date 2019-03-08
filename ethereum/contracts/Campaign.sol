@@ -3,6 +3,7 @@ pragma solidity ^0.4.17;
 contract Campaign {
     struct Request {
         // Define types and fields for our struct
+        // TODO: Add variable to keep track of who has voted on specific requests
         string description;
         uint value;
         address recipient;
@@ -12,7 +13,8 @@ contract Campaign {
     Request[] public requests;  // requests array holds elements of type Request
     address public manager;  // Define the manager
     uint public minimumContribution;
-    address[] public approvers;
+    // Refactor an array to a mapping | address[] public approvers;
+    mapping(address => bool) public approvers;
 
     // Add `modifier restricted` to any given function to access its behavior
     modifier restricted() {
@@ -36,7 +38,9 @@ contract Campaign {
         // Access the global variable `msg` to verify value in wei
         require(msg.value > minimumContribution);
 
-        approvers.push(msg.sender);
+        // Add address from `msg.sender` to `approvers` mapping as a key
+        // Set its value to `true`
+        approvers[msg.sender] = true;
 
     }
 
