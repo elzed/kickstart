@@ -40,5 +40,18 @@ contract Campaign {
 
     }
 
-    // TODO: Add a createRequest() function
+    function createRequest(string description, uint value, address recipient)
+        public restricted {
+            // Assign instance of Request struct with its fields in braces
+            // to variable `newRequest` of type Request
+            Request newRequest = Request({
+                description: description,
+                value: value,
+                recipient: recipient,
+                complete: false
+            });
+
+            // Add instantiated struct to `requests` array
+            requests.push(newRequest);
+    }
 }
