@@ -3,11 +3,12 @@ pragma solidity ^0.4.17;
 contract Campaign {
     struct Request {
         // Define types and fields for our struct
-        // TODO: Add variable to keep track of who has voted on specific requests
         string description;
         uint value;
         address recipient;
         bool complete;
+        uint approvalCount;
+        mapping(address => bool) approvals;
     }
 
     Request[] public requests;  // requests array holds elements of type Request
