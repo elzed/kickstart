@@ -81,14 +81,17 @@ contract Campaign {
         request.approvalCount++;
     }
 
-    // TODO: Create finalizeRequest() - after a request has received enough approvals,
-    // TODO: the manager may call this to get money sent to the vendor
     function finalizeRequest(uint index) public restricted {
         Request storage request = requests[index];
 
+        // Verify manager has received majority yes votes
+        require(request.approvalCount > (approversCount / 2));
         // Verify that request has never been finalized
         require(!request.complete);
 
+        // Address types (recipient) have access to transfer() method
+        // Transfer funds to designated address after enough yes votes
+        request.recipient.transfer(request.value);
 
         request.complete = true;
     }
