@@ -62,15 +62,17 @@ contract Campaign {
     }
 
     function approveRequest(uint index) public {
+        Request storage request = requests[index];
+
         // Require approvers mapping has sender's address (returns true)
         require(approvers[msg.sender]);
         // If approvals[msg.sender] exists then vote already recorded
         // and it must NOT be already recorded in order to vote
-        require(!requests[index].approvals[msg.sender]);
+        require(!request.approvals[msg.sender]);
 
         // To record that sender has now voted
-        requests[index].approvals[msg.sender] = true;
+        request.approvals[msg.sender] = true;
 
-        requests[index].approvalCount++;
+        request.approvalCount++;
     }
 }
