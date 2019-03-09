@@ -16,6 +16,8 @@ contract Campaign {
     uint public minimumContribution;
     // Refactor an array to a mapping | address[] public approvers;
     mapping(address => bool) public approvers;
+    // Add variable to track number of contributors (or approvers???)
+    uint public approversCount;
 
     // Add modifier `restricted` to any given function to access its behavior
     modifier restricted() {
@@ -42,6 +44,9 @@ contract Campaign {
         // Add address from `msg.sender` to `approvers` mapping as a key
         // Set its value to `true`
         approvers[msg.sender] = true;
+
+        // Increment total number of contributors/approvers
+        approversCount++;
 
     }
 
@@ -78,7 +83,13 @@ contract Campaign {
 
     // TODO: Create finalizeRequest() - after a request has received enough approvals,
     // TODO: the manager may call this to get money sent to the vendor
-    function finalizeRequest() public restricted {
+    function finalizeRequest(uint index) public restricted {
+        Request storage request = requests[index];
 
+        // Verify that request has never been finalized
+        require(!request.complete);
+
+
+        request.complete = true;
     }
 }
