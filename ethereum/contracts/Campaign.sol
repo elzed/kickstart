@@ -17,7 +17,7 @@ contract Campaign {
     // Refactor an array to a mapping | address[] public approvers;
     mapping(address => bool) public approvers;
 
-    // Add `modifier restricted` to any given function to access its behavior
+    // Add modifier `restricted` to any given function to access its behavior
     modifier restricted() {
         require(msg.sender == manager);
         // The function body is inserted where the special symbol `_;`
@@ -74,5 +74,11 @@ contract Campaign {
         request.approvals[msg.sender] = true;
 
         request.approvalCount++;
+    }
+
+    // TODO: Create finalizeRequest() - after a request has received enough approvals,
+    // TODO: the manager may call this to get money sent to the vendor
+    function finalizeRequest() public restricted {
+
     }
 }
