@@ -13,6 +13,11 @@ contract CampaignFactory {
         // Add address to our array of all deployed campaigns
         deployedCampaigns.push(newCampaign);
     }
+
+    // Return array containing complete list of campaigns
+    function getDeployedCampaigns() public view returns (address[]) {
+        return deployedCampaigns;
+    }
 }
 
 
