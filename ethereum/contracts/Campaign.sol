@@ -9,8 +9,7 @@ contract CampaignFactory {
     function createCampaign(uint minimum) public {
         // Allow user deployment with min contribution value named
         // Assign returned Campaign address to local variable
-        // TODO: Handle the msg variable to equal the sender, not the factory
-        address newCampaign = new Campaign(minimum);
+        address newCampaign = new Campaign(minimum, msg.sender);
         // Add address to our array of all deployed campaigns
         deployedCampaigns.push(newCampaign);
     }
@@ -47,8 +46,8 @@ contract Campaign {
 
     // Define the constructor function
     // Function sets the owner and the minimumContribution
-    function Campaign(uint minimum) public {
-        manager = msg.sender;
+    function Campaign(uint minimum, address creator) public {
+        manager = creator;
         minimumContribution = minimum;
     }
 
