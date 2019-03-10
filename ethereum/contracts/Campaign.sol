@@ -1,5 +1,23 @@
 pragma solidity ^0.4.17;
 
+contract CampaignFactory {
+    // Keep list to track of all deployed campaigns
+    address[] public deployedCampaigns;
+
+    // Users are able to create their own campaign and by calling this
+    // contract within the contract, they pay deployment costs
+    function createCampaign(uint minimum) public {
+        // Allow user deployment with min contribution value named
+        // Assign returned Campaign address to local variable
+        // TODO: Handle the msg variable to equal the sender, not the factory
+        address newCampaign = new Campaign(minimum);
+        // Add address to our array of all deployed campaigns
+        deployedCampaigns.push(newCampaign);
+    }
+}
+
+
+
 contract Campaign {
     struct Request {
         // Define types and fields for our struct
