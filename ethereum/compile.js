@@ -7,12 +7,14 @@ const fs = require('fs-extra');
 const buildPath = path.resolve(__dirname, 'build');
 fs.removeSync(buildPath);
 
-// TODO: Read Campaign.sol file from the contracts folder
+// Read Campaign.sol file from the contracts folder
+const campaignPath = path.resolve(__dirname, 'contracts', 'Campaign.sol');
+const source = fs.readFileSync(campaignPath, 'utf8');
 
 
-
-// TODO: Compile both contracts with solidity compiler
-
+// Contains two separate objects
+// Campaign Contract - Campaign Factory
+const output = solc.compile(source, 1).contracts
 
 
 // TODO: Write output to the build directory
