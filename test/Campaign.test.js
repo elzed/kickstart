@@ -27,4 +27,15 @@ beforeEach(async () => {
     factory = await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
         .deploy({ data: compiledFactory.bytecode })
         .send({ from: accounts[0], gas: '1000000' });  // Send transaction out to network
+
+    // 100 wei minimum to keep it simple
+    await factory.methods.createCampaign('100').send({
+        from: accounts[0],
+        gas: '1000000'
+    });
+
+    // Get array of deployed contract addresses
+    [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
+
+    // TODO: Use Web3 to create a JS representation of the contract 
 });
