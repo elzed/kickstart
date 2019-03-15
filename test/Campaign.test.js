@@ -11,7 +11,6 @@ const compiledFactory = require('../ethereum/build/CampaignFactory.json');
 const compiledCampaign = require('../ethereum/build/Campaign.json');
 
 
-// TODO: Access compiledFactory to create campaigns and write test around them
 
 let accounts;
 let factory;
@@ -43,4 +42,12 @@ beforeEach(async () => {
         JSON.parse(compiledCampaign.interface),
         campaignAddress
     );
+});
+
+// Make sure both factory and campaign were successfully deployed
+describe('Campaigns', () => {
+    it('should deploy a factory and a campaign', () => {
+        assert.ok(factory.options.address);
+        assert.ok(campaign.options.address);
+    });
 });
