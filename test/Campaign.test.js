@@ -37,5 +37,10 @@ beforeEach(async () => {
     // Get array of deployed contract addresses
     [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
 
-    // TODO: Use Web3 to create a JS representation of the contract 
+    campaign = await new Web3.eth.Contract(
+        // Pass in the jsonInterface ABI for our compiled campaign
+        // And pass in the address
+        JSON.parse(compiledCampaign.interface),
+        campaignAddress
+    );
 });
