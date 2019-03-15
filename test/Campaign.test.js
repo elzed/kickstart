@@ -20,13 +20,12 @@ let campaignAddress;
 let campaign;
 
 beforeEach(async () => {
-    // Use provider to return a list of account the node controls
+    // Use provider to return a list of accounts the node controls
     accounts = await web3.eth.getAccounts();
 
-    // TODO: 1. Deploy instance of compiledFactory contract
-    // TODO: 2. Use Contract() constructor from web3 library passing in compiledFactory ABI
-    // TODO: 3. Deploy and send transaction out to network
-
-    // compiledFactory ABI (Solidity <-> JavaScript),
-
+    // Use Contract() constructor from web3.eth library, passing in compiledFactory ABI
+    // compiledFactory ABI (Solidity <-> JavaScript)
+    factory = await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
+        .deploy({ data: compiledFactory.bytecode })
+        .send({ from: accounts[0], gas: '1000000' });  // Send transaction out to network
 });
