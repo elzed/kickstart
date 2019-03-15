@@ -5,7 +5,7 @@ const Web3 = require('web3');
 // Immediately create an instance of Web3
 // Follow by providing a Provider -
 // the comm layer between web3 library and specific Ethereum network
-const web3 = new Web3(ganache.provider);
+const web3 = new Web3(ganache.provider());
 
 const compiledFactory = require('../ethereum/build/CampaignFactory.json');
 const compiledCampaign = require('../ethereum/build/Campaign.json');
@@ -36,7 +36,7 @@ beforeEach(async () => {
     // Get array of deployed contract addresses
     [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
 
-    campaign = await new Web3.eth.Contract(
+    campaign = await new web3.eth.Contract(
         // Pass in the jsonInterface ABI for our compiled campaign
         // And pass in the address
         JSON.parse(compiledCampaign.interface),
