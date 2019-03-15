@@ -11,7 +11,6 @@ const compiledFactory = require('../ethereum/build/CampaignFactory.json');
 const compiledCampaign = require('../ethereum/build/Campaign.json');
 
 
-// TODO: Create beforeEach() statement to deploy instance of compiledFactory
 // TODO: Access compiledFactory to create campaigns and write test around them
 
 let accounts;
