@@ -90,12 +90,37 @@ describe('Campaigns', () => {
     });
 
     it('should process requests', async () => {
-        // TODO: Contribute to a campaign
-        // TODO: Create a request
-        // TODO: Approve the request
-        // TODO: Finalize the request
-        // TODO: Assert other party receives money from above request
+        // Contribute some amount of money to our campaign
+        await campaign.methods.contribute().send({
+            from: accounts[0],
+            value: web3.utils.toWei('10', 'ether') // use web3 to handle ether
+        });
 
-        
+        // Create a request to send portion of the 10 ether to another account
+        await campaign.methods
+            .createRequest('A', web3.utils.toWei('5', 'ether'), accounts[1])
+            .send({ from: accounts[0], gas: '1000000' });
+
+        // Vote/approve request
+        await campaign.methods.approveRequest(0).send({
+            from: accounts[0],
+            gas: '1000000'
+        });
+
+        // Finalize the request b/c our single approver has voted 'yes'
+        await campaign.methods.finalizeRequest(0).send({
+            from: accounts[0],  // only manager has authority to finalize
+            gas: '1000000'
+        });
+
+        // Retrieve balance of receiving account (1)
+        // Verify receiving account has the money transferred to it
+        let balance = await web3.eth.getBalance(accounts[1]); // returns string
+        balance = web3.utils.fromWei(balance, 'ether');
+        balance = parseFloat(balance);
+
+        // 104 recognizes payments in gas
+        // Exact amount difficult - ganache doesn't clean up between tests
+        assert(balance > 104);
     });
 });
