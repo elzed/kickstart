@@ -88,4 +88,14 @@ describe('Campaigns', () => {
 
         assert.equal('Buy batteries', request.description);
     });
+
+    it('should process requests', async () => {
+        // TODO: Contribute to a campaign
+        // TODO: Create a request
+        // TODO: Approve the request
+        // TODO: Finalize the request
+        // TODO: Assert other party receives money from above request
+
+        
+    });
 });
