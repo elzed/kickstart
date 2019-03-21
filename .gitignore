@@ -3,6 +3,9 @@
 /.pnp
 .pnp.js
 
+# next.js
+/.next
+
 # webstorm
 *.iml
 /.idea
