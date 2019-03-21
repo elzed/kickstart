@@ -1,6 +1,3 @@
-// TODO: Use Factory instance to retrieve a list of deployed campaigns
-// TODO: Use React to show something about each campaign
-
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 
