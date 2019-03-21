@@ -15,3 +15,7 @@ class CampaignIndex extends Component {
         return <div>Campaigns Index</div>
     }
 }
+
+// Exporting of React component required by Next.js
+// when file originates from pages directory
+export default CampaignIndex;
