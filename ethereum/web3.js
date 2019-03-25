@@ -8,8 +8,6 @@ import Web3 from 'web3';
 
 let web3;
 
-// Verify code is being executed in the browser and MetaMask available
-// Else ...
 if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
     // We are in the browser and MetaMask is running so we will
     // use MetaMask's current provider
