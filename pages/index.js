@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 
-// TODO: Refactor to move getDeployedCampaigns() out of componentDidMount()
-// TODO: because server-side rendering of the later does not occur in Next.js
 class CampaignIndex extends Component {
-    async componentDidMount() {
+    static async getInitialProps() {
         // Use CampaignFactory instance to call getDeployedCampaigns()
         const campaigns = await factory.methods.getDeployedCampaigns().call();
-        console.log(campaigns);
+
+        return { campaigns: campaigns };
     }
 
     render() {
-        return <div>Campaigns Index</div>
+        return <div>{this.props.campaigns[0]}</div>
     }
 }
 
