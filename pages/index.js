@@ -9,6 +9,22 @@ class CampaignIndex extends Component {
         return { campaigns: campaigns };
     }
 
+    renderCampaigns() {
+        // Iterate over list of Campaign addresses
+        // For every address, create an object
+        // Each object represents an individual card (with header and description)
+        const items = this.props.campaigns.map(address => {
+            return {
+                header: address,
+                description: <a>View Campaign</a>,
+                // A fluid card takes up the width of its container
+                fluid: true
+            };
+        });
+
+        // TODO: Use `items` array to create and return card component
+    }
+
     render() {
         return <div>{this.props.campaigns[0]}</div>
     }
