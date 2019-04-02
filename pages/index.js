@@ -22,7 +22,7 @@ class CampaignIndex extends Component {
             };
         });
 
-        // TODO: Use `items` array to create and return card component
+        return <Card.Group items={items} />;
     }
 
     render() {
