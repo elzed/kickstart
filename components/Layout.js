@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default () => {
+export default props => {
     return (
         <div>
             <h1>I'm a header</h1>
