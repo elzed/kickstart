@@ -30,7 +30,7 @@ class CampaignIndex extends Component {
     render() {
         return (
             <Layout>
-                // JSX passed to Layout component as children property
+                {/*JSX passed to Layout component as children property*/}
                 <div>
                     <link
                         rel="stylesheet"
