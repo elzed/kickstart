@@ -7,11 +7,15 @@ import web3 from '../../ethereum/web3';
 class CampaignNew extends Component {
     state = {
         minimumContribution: '',
-        errorMessage: ''
+        errorMessage: '',
+        loading: false
     };
 
     onSubmit = async (event) => {
         event.preventDefault();
+
+        // Start the loading indicator when submitted
+        this.setState({ loading: true, errorMessage: '' });
 
         // Create a new campaign by importing factory instance
         try {
@@ -25,6 +29,9 @@ class CampaignNew extends Component {
             // If error, update state object its message text
             this.setState({ errorMessage: err.message });
         }
+
+        // Stop the loading indicator when completed
+        this.setState({ loading: false });
     };
 
     render() {
@@ -48,7 +55,7 @@ class CampaignNew extends Component {
                         header="Oops!"
                         content={this.state.errorMessage}
                     />
-                    <Button primary type='submit'>Create!</Button>
+                    <Button loading={this.state.loading} primary type='submit'>Create!</Button>
                 </Form>
             </Layout>
         );
