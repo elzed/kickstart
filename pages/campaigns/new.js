@@ -7,11 +7,20 @@ class CampaignNew extends Component {
         minimumContribution: ''
     };
 
+    onSubmit = (event) => {
+        // Handle a form submittal
+        event.preventDefault();
+
+        // TODO: Create a new campaign by importing
+        // TODO: factory instance from factory.js
+        
+    };
+
     render() {
         return (
             <Layout>
                 <h3>Create a Campaign</h3>
-                <Form>
+                <Form onSubmit={this.onSubmit}>
                     <Form.Field>
                         <label>Minimum Contribution</label>
                         <Input
