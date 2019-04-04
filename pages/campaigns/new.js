@@ -10,11 +10,9 @@ class CampaignNew extends Component {
     };
 
     onSubmit = async (event) => {
-        // Handle a form submittal
         event.preventDefault();
 
-        // TODO: Create a new campaign by importing
-        // TODO: factory instance from factory.js
+        // Create a new campaign by importing factory instance
         const accounts = await web3.eth.getAccounts();
         await factory.methods
             .createCampaign(this.state.minimumContribution)
