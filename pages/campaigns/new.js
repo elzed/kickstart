@@ -42,7 +42,7 @@ class CampaignNew extends Component {
                                 this.setState({ minimumContribution: event.target.value })}
                         />
                     </Form.Field>
-                    // Display error message on form
+                    {/*Display error message on form*/}
                     <Message
                         error
                         header="Oops!"
