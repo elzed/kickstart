@@ -6,19 +6,26 @@ import web3 from '../../ethereum/web3';
 
 class CampaignNew extends Component {
     state = {
-        minimumContribution: ''
+        minimumContribution: '',
+        errorMessage: ''
     };
 
     onSubmit = async (event) => {
         event.preventDefault();
 
         // Create a new campaign by importing factory instance
-        const accounts = await web3.eth.getAccounts();
-        await factory.methods
-            .createCampaign(this.state.minimumContribution)
-            .send({
-                from: accounts[0]
-            });
+        try {
+            const accounts = await web3.eth.getAccounts();
+            await factory.methods
+                .createCampaign(this.state.minimumContribution)
+                .send({
+                    from: accounts[0]
+                });
+        } catch (err) {
+            // If error, update state object and use the
+            // subsequent rerender to show error message on form
+            this.setState({ errorMessage: err.message });
+        }
     };
 
     render() {
