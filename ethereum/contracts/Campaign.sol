@@ -127,4 +127,8 @@ contract Campaign {
             manager
         );
     }
+
+    function getRequestsCount() public view returns (uint) {
+        return requests.length;
+    }
 }
