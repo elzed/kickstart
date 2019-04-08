@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import Layout from '../../components/Layout';
+import Campaign from '../../ethereum/campaign';
 
 class CampaignShow extends Component {
     static async getInitialProps(props) {
         // Get address of campaign to be displayed
-        console.log(props.query.address);
-        return {};
+        const campaign = Campaign(props.query.address);
+
+        const summary = await campaign.methods.getSummary().call();
+
+        // Return named properties established within
+        // getSummary() function inside Campaign.sol contract
+        return {
+            minimumContribution: summary[0],
+            balance: summary[1],
+            requestsCount: summary[2],
+            approversCount: summary[3],
+            manager: summary[4]
+        };
     }
 
     render() {
