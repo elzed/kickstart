@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import Layout from '../../components/Layout';
 
 class CampaignShow extends Component {
+    static async getInitialProps(props) {
+        // Get address of campaign to be displayed
+        console.log(props.query.address);
+        return {};
+    }
+
     render() {
         return (
             <Layout>
