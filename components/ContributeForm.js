@@ -6,9 +6,16 @@ class ContributeForm extends Component {
         value: ''
     };
 
+    onSubmit = (event) => {
+        event.preventDefault();
+
+        // TODO: Show a spinner on button
+        // TODO: Send specified monies to campaign contract
+    };
+
     render() {
         return (
-            <Form>
+            <Form onSubmit={this.onSubmit}>
                 <Form.Field>
                     <label>Amount to Contribute</label>
                     <Input
