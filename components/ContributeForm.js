@@ -15,8 +15,8 @@ class ContributeForm extends Component {
         event.preventDefault();
 
         const campaign = Campaign(this.props.address);
-        // When loading, a spinner should display
-        this.setState({ loading: true });
+        // When loading, a spinner should display and any prior error should clear
+        this.setState({ loading: true, errorMessage: '' });
 
         try {
             const accounts = await web3.eth.getAccounts();
@@ -35,7 +35,7 @@ class ContributeForm extends Component {
 
     render() {
         return (
-            <Form onSubmit={this.onSubmit}>
+            <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
                 <Form.Field>
                     <label>Amount to Contribute</label>
                     <Input
@@ -45,7 +45,8 @@ class ContributeForm extends Component {
                         labelPosition="right"
                     />
                 </Form.Field>
-                <Button primary>
+                <Message error header="Oops!" content={this.state.errorMessage} />
+                <Button primary loading={this.state.loading}>
                     Contribute!
                 </Button>
             </Form>
