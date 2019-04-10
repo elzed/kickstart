@@ -15,6 +15,10 @@ class CampaignShow extends Component {
         // Return named properties established within
         // getSummary() function inside Campaign.sol contract
         return {
+            // To have access to this.props.address from inside
+            // component instance and its props object
+            address: props.query.address,
+
             minimumContribution: summary[0],
             balance: summary[1],
             requestsCount: summary[2],
@@ -74,7 +78,7 @@ class CampaignShow extends Component {
                         {this.renderCards()}
                     </Grid.Column>
                     <Grid.Column width={6}>
-                        <ContributeForm />
+                        <ContributeForm address={this.props.address} />
                     </Grid.Column>
                 </Grid>
             </Layout>
