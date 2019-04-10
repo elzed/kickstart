@@ -6,15 +6,17 @@ import { Router } from '../routes';
 
 class ContributeForm extends Component {
     state = {
-        value: ''
+        value: '',
+        errorMessage: '',
+        loading: false
     };
 
     onSubmit = async (event) => {
         event.preventDefault();
 
-        // TODO: Show a spinner on button
-
         const campaign = Campaign(this.props.address);
+        // When loading, a spinner should display
+        this.setState({ loading: true });
 
         try {
             const accounts = await web3.eth.getAccounts();
@@ -25,8 +27,10 @@ class ContributeForm extends Component {
             // Refresh the current route with updated info
             Router.replaceRoute(`/campaigns/${this.props.address}`);
         } catch (err) {
-            
+            this.setState({ errorMessage: err.message });
         }
+        // Stop spinner and reset form value to empty
+        this.setState({ loading: false, value: '' });
     };
 
     render() {
