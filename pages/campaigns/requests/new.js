@@ -5,6 +5,12 @@ import web3 from '../../../ethereum/web3';
 import { Link, Router } from '../../../routes';
 
 class RequestNew extends Component {
+    state = {
+        value: '',
+        description: '',
+        recipient: ''
+    };
+
     // Get address and return as prop for the component
     static async getInitialProps(props) {
         const { address } = props.query;
