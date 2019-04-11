@@ -39,7 +39,7 @@ class RequestNew extends Component {
         return (
             <Layout>
                 <h3>Create a Request</h3>
-                <Form>
+                <Form onSubmit={this.onSubmit}>
                     <Form.Field>
                         <label>Description</label>
                         <Input
