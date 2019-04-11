@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import Layout from '../../../components/Layout';
 
 class RequestIndex extends Component {
     render() {
         return (
-            <h3>Request List</h3>
+            <Layout>
+                <h3>Requests</h3>
+            </Layout>
         );
     }
 }
