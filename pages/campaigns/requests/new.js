@@ -18,6 +18,23 @@ class RequestNew extends Component {
         return { address };
     }
 
+    onSubmit = async event => {
+        event.preventDefault();
+
+        // Get reference to our campaign instance by using the address
+        const campaign = Campaign(this.props.address);
+        const { description, value, recipient } = this.state;
+
+        try {
+            const accounts = await web3.eth.getAccounts();
+            await campaign.methods.createRequest(
+                description,
+                web3.utils.toWei(value, 'ether'),
+                recipient
+            ).send({ from: account[0] })
+        } catch (err) {}
+    };
+
     render() {
         return (
             <Layout>
