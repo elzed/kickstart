@@ -12,6 +12,7 @@ class RequestRow extends Component {
                 <Cell>{id}</Cell>
                 <Cell>{request.description}</Cell>
                 <Cell>{web3.utils.fromWei(request.value, 'ether')}</Cell>
+                <Cell>{request.recipient}</Cell>
             </Row>
         );
     }
