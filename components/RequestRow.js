@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Button } from 'semantic-ui-react';
 import web3 from '../ethereum/web3';
 
 class RequestRow extends Component {
@@ -14,6 +14,11 @@ class RequestRow extends Component {
                 <Cell>{web3.utils.fromWei(request.value, 'ether')}</Cell>
                 <Cell>{request.recipient}</Cell>
                 <Cell>{request.approvalCount}/{approversCount}</Cell>
+                <Cell>
+                    <Button color="green" basic onClick={this.onApprove}>
+                        Approve
+                    </Button>
+                </Cell>
             </Row>
         );
     }
