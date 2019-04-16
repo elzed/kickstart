@@ -33,14 +33,20 @@ class RequestRow extends Component {
                 <Cell>{request.recipient}</Cell>
                 <Cell>{request.approvalCount}/{approversCount}</Cell>
                 <Cell>
-                    <Button color="green" basic onClick={this.onApprove}>
-                        Approve
-                    </Button>
+                    {/*Ternary operator to hide buttons if no approval*/}
+                    {request.complete ? null : (
+                        <Button color="green" basic onClick={this.onApprove}>
+                            Approve
+                        </Button>
+                    )}
                 </Cell>
                 <Cell>
-                    <Button color="teal" basic onClick={this.onFinalize}>
-                        Finalize
-                    </Button>
+                    {/*Ternary operator to hide buttons if no finalize*/}
+                    {request.complete ? null : (
+                        <Button color="teal" basic onClick={this.onFinalize}>
+                            Finalize
+                        </Button>
+                    )}
                 </Cell>
             </Row>
         );
