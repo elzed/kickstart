@@ -26,7 +26,7 @@ class RequestRow extends Component {
         const { id, request, approversCount } = this.props;
 
         return (
-            <Row>
+            <Row disabled={request.complete}>
                 <Cell>{id}</Cell>
                 <Cell>{request.description}</Cell>
                 <Cell>{web3.utils.fromWei(request.value, 'ether')}</Cell>
